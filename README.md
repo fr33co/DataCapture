@@ -11,7 +11,7 @@ constant time O(1)
 This test it's separated into 4 files: main program, functional tests,
 unit tests and code complexity tests. Follow the instructions:
 
-# Main program
+## Main program
 
 You need to run:
 
