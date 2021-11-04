@@ -2,9 +2,9 @@ import matplotlib.pyplot as plt
 from timeit import repeat
 
 # Test complexity of build stat method. #
-len_items = 100
+len_items = 999
 times = []
-for index_list in range(100):
+for index_list in range(999):
     code = f"import random;" \
            f"from main import DataCapture;" \
            f"capture = DataCapture();" \

@@ -9,7 +9,8 @@ def data_validator(number):
         ValueError: Must be a positive integer number.
     """
     if not number or not isinstance(number, int) or number < 0 or number > 999:
-        raise ValueError('%s must be a positive integer number.' % number)
+        raise ValueError(
+            '%s must be greater than 0 and less than 1000.' % number)
 
 
 class DataCapture:
@@ -21,7 +22,7 @@ class DataCapture:
     """
     raw_data_list = []
     order_data_list = []
-    dict_of_counts = {}
+    list_of_counts = []
 
     def add(self, number):
         """
@@ -35,16 +36,14 @@ class DataCapture:
 
     def build_stats(self):
         """build_stats: Generate data structure and sum repeated numbers."""
-        list_size = range(max(self.raw_data_list) + 1)
-        for index in list_size:
-            for number in self.raw_data_list:
-                self.dict_of_counts.update(
-                        {index: self.dict_of_counts.get(index, 0)})
-                if index == number:
-                    self.order_data_list.append(index)
-                    self.dict_of_counts.update(
-                        {index:
-                         self.dict_of_counts.get(number, 0) + 1})
+        self.list_of_counts = [0] * (max(self.raw_data_list) + 1)
+        for number in self.raw_data_list:
+            self.list_of_counts[number] += 1
+        for count in range(len(self.list_of_counts)):
+            if self.list_of_counts[count] > 0:
+                self.order_data_list.extend(
+                    [count] * self.list_of_counts[count])
+
 
     def less(self, number):
         """
